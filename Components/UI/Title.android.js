@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Dimensions } from "react-native";
+import { StyleSheet, Text, Dimensions, Platform } from "react-native";
 
 function Title({ children }) {
   return <Text style={styles.title}>{children}</Text>;
@@ -12,11 +12,13 @@ const deviceHeight = Dimensions.get("window").height;
 const styles = StyleSheet.create({
   title: {
     fontStyle: "open-sans-bold",
-    fontSize: deviceWidth < 380 ? 20 : 24,
+    fontSize: deviceHeight < 600 ? 20 : 24,
     fontWeight: "bold",
     color: "#fff",
     textAlign: "center",
-    borderWidth: deviceHeight < 650 ? 1 : 2,
+    // borderWidth: Platform.OS === "android" ? 0 : 2,
+    // borderWidth: Platform.select({ ios: 2, android: 0 }),
+    borderWidth: 0,
     borderColor: "#fff",
     padding: deviceHeight < 650 ? 8 : 12,
     maxWidth: "80%",
